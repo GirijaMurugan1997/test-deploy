@@ -1,8 +1,53 @@
 <!DOCTYPE html>
 <style>
+div {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin-top: 100px;
+}
+
+button {
+    padding: 15px;
+    border: none;
+    background-color: #004986;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
 </style>
 <html>
-    <h1>test</h1>
+    <div>
+        <button id="ios-button">Download for iOS</button>
+    </div>
+    <div>
+        <button id="android-button">Download for Android</button>
+    </div>
 <body>
+    <script>
+        getMobileOperatingSystem();
+        function getMobileOperatingSystem () {
+            if (navigator.userAgent.indexOf("Mobile") != -1) {
+                if (navigator.userAgent.indexOf("Android") != -1) {
+                    document.getElementById("ios-button").hidden = true
+                    document.getElementById("android-button").hidden = false
+                    alert("Android");
+                } else if (
+                    navigator.userAgent.indexOf("iPhone") != -1 ||
+                    navigator.userAgent.indexOf("iPad") != -1
+                ) {
+                    document.getElementById("ios-button").hidden = false
+                    document.getElementById("android-button").hidden = true
+                    alert("iOS");
+                }
+            } else {
+                alert("Cannot download");
+                document.getElementById("ios-button").hidden = true
+                document.getElementById("android-button").hidden = true
+            }
+        };
+    </script>
 </body>
 </html>
